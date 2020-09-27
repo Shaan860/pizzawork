@@ -1,1 +1,65 @@
-<h1>Hello</h1>
+<h1 class="text-center">Welcome To Pizza Task World</h1>
+<div class="container p-3 my-3 border">
+<h4>Pizza Order Details</h4>
+<!--Table Start-->
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Number Of Orderd</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+        <th>Change Status</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let order of ordardList"  (click) = "show(order)">
+      <tr>
+        <th scope="row">{{order.customername}}</th>
+        <td>{{order.numberofitems}}</td>
+        <td>{{order.totalamount}}</td>
+        <td>{{order.status}}</td>
+        <td><button class="btn btn-primary" (click)="updatestatus($event, order)">In Progress</button> &nbsp; 
+            <button class="btn btn-success" (click)="readytodelever($event, order)"> Ready To Delever</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<!--Table End-->
+</div>
+
+<div class="container">
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{ title }}</h4>
+          <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+         <ul *ngIf="selectedDetaild">
+           <li>Name : {{ selectedDetaild.customername }}</li> 
+           <li>Item Name :{{selectedDetaild.itemname}}</li>
+           <li>Item Price: {{selectedDetaild.itemprice}}</li>
+           <li>Total Price : {{selectedDetaild.totalamount}}</li>
+           <li>Delivery address: {{selectedDetaild.customeraddress}}</li>
+         </ul>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
